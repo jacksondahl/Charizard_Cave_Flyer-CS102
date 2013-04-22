@@ -44,5 +44,4 @@ The game's interface is drawn below. It is very straightforward.
 [Click to view](https://photos-5.dropbox.com/t/0/AAC4Qq1eEihCZLJgRWWx6FeqZ9wqD2XeB7Jqvu0hVBRWcg/12/1888617/jpeg/32x32/3/_/1/2/Photo%20Apr%2021%2C%2010%2024%2003%20PM.jpg/1zPottuZYtJ4u9vokj-xhr0sC89H7Y6Bu4-zeMIS-NE?size=1280x960)
 
 
-
 Note: The game is similar to the "helicopter game", but with enemies, for reference.
