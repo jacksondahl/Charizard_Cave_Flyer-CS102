@@ -3,13 +3,16 @@
 
 #include <QGraphicsPixmapItem>
 #include "GraphicWindow.h"
+#include "thing.h"
 
-class Charizard : public QGraphicsPixmapItem
+class GraphicWindow;
+
+class Charizard : public Thing
 {
 	public:
-		Charizard(GraphicWindow *parent);
+		Charizard(GraphicWindow* parent, QPixmap *pm, int nx, int ny);
 		~Charizard();
-
+		void move();
 };
 
 #endif

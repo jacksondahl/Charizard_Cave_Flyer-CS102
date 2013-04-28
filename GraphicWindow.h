@@ -7,6 +7,7 @@
 #include <QGraphicsView>
 #include <QGraphicsItemAnimation>
 #include <QPushButton>
+#include <QGraphicsPixmapItem>
 #include "mainwindow.h"
 #include "charizard.h"
 
@@ -24,6 +25,7 @@ public:
 private:
     QGraphicsScene *scene;
     MainWindow *parent_;
+    QGraphicsPixmapItem* background;
     int *numArr;
    // QTimer timer;
     
