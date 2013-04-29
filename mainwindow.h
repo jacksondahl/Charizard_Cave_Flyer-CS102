@@ -27,6 +27,7 @@ public:
     //flags
     bool gameStarted;
     bool spacePressed;
+    bool isPaused;
     
     //timer
 	QTimer* timer;
@@ -67,6 +68,7 @@ private:
     //QLabel
     QLabel *outputLabel;
     
+    void keyPause();
     
     
 public slots:

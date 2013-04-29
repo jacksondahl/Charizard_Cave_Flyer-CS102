@@ -35,15 +35,15 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene->addItem(bg);
 	scene->addItem(bg2);
 	
+	//creating player instanc
+	playerPos=150;
+	player = new Charizard(playerSprite,150,playerPos);
+	scene->addItem(player);
+	
 	//creating spikes instance
 	Spikes* spikes = new Spikes(spikesSprite,0,0);
 	scene->addItem(spikes);
-  
-	//creating player instanc
-	playerPos=150;
 	
-	player = new Charizard(playerSprite,150,playerPos);
-	scene->addItem(player);
 	
 	//creating Feraligatr instance
 	Feraligatr* gatr = new Feraligatr(feraligatrSprite,800,310);
@@ -96,3 +96,4 @@ void GraphicWindow::flyUp()
 	player->setPos(150,playerPos-5);
 	playerPos-=5;
 }
+

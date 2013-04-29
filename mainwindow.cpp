@@ -24,6 +24,7 @@ void MainWindow::pauseGame()
 	timer->stop();
 	pauseButton->setText("Resume");
 	connect(pauseButton, SIGNAL(clicked()), this, SLOT(resumeGame()));
+	isPaused = true;
 }
 
 void MainWindow::resumeGame()
@@ -31,6 +32,23 @@ void MainWindow::resumeGame()
 	timer->start();
 	pauseButton->setText("Pause");
 	connect(pauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
+	isPaused = false;
+}
+
+void MainWindow::keyPause()
+{
+	if (!isPaused)
+	{
+		timer->stop();
+		isPaused = true;
+		pauseGame();
+	}
+	else if (isPaused)
+	{
+		timer->start();
+		isPaused = false;
+		resumeGame();
+	}
 }
 
 void MainWindow::loop()
@@ -38,8 +56,8 @@ void MainWindow::loop()
 	game->moveBG();
 	if (!spacePressed)
 	{
-		game->player->setPos(150, game->playerPos+1);
-		game->playerPos+=1;
+		game->player->setPos(150, game->playerPos+3);
+		game->playerPos+=3;
 	}
 	else
 	{
@@ -49,10 +67,14 @@ void MainWindow::loop()
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {
-	spacePressed = true;
 		if (e->key() == Qt::Key_Space)
 		{
+			spacePressed = true;
 			//game->flyUp();
+		}
+		if (e->key() == Qt::Key_P)
+		{
+			keyPause();
 		}
 }
 
@@ -66,6 +88,7 @@ MainWindow::MainWindow()
 {
 	gameStarted = false;
 	spacePressed = false;
+	isPaused = false;
 	
 	//timer
 	//start when start is clicked
