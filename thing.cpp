@@ -8,3 +8,13 @@ Thing::Thing(QPixmap* p, int nx, int ny)
 	y = ny;
 	setPos(x,y);
 }
+
+int Thing::getX()
+{
+	return x;
+}
+
+int Thing::getY()
+{
+	return y;
+}

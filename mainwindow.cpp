@@ -87,6 +87,8 @@ void MainWindow::loop()
 	}
 	game->moveBG();
 	
+	game->generateObject();
+	
 	game->objectMovement();
 	
 	if ((!spacePressed && game->playerPos < 310) || (spacePressed && game->playerPos < 30))
@@ -111,27 +113,39 @@ void MainWindow::loop()
 	//speed up
 	if (score == 250)
 	{
-		timer->setInterval(750/24);
+		timer->setInterval(950/24);
+	}
+	
+	if (score == 500)
+	{
+		timer->setInterval(900/24);
 	}
 	
 	if (score == 750)
 	{
-		timer->setInterval(500/24);
+		timer->setInterval(850/24);
+	}
+	
+	if (score == 1000)
+	{
+		timer->setInterval(750/24);
 	}
 	
 	if (score == 1500)
 	{
-		timer->setInterval(250/24);
+		timer->setInterval(650/24);
 	}
-	
+	if (score == 2000)
+	{
+		timer->setInterval(500/24);
+	}
 	if (score == 3000)
 	{
-		timer->setInterval(125/24);
+		timer->setInterval(400/24);
 	}
-	
 	if (score == 5000)
 	{
-		timer->setInterval(75/24);
+		timer->setInterval(250/24);
 	}
 }
 

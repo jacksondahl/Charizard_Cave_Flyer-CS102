@@ -32,6 +32,7 @@ public:
     bool checkForSpikes();
     void objectMovement(); //moves objects and checks for collisions
 	bool checkForCollision();
+	void generateObject();
     
 private:
     QGraphicsScene *scene;
@@ -42,6 +43,14 @@ private:
     int topLX;
     MyList<Thing*> thingList;
     MainWindow* m;
+    
+    //sprites
+    QPixmap* playerSprite; //charizard player image
+	QPixmap* upperSpikesSprite; //upper spikes image
+	QPixmap* lowerSpikesSprite; //lower spikes image
+	QPixmap* feraligatrSprite; //feraligatr image
+	QPixmap* fireballSprite; //fireball image
+	QPixmap* gastlySprite; //gastly image
 
 public slots:
 

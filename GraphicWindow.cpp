@@ -7,6 +7,7 @@
 #include "fireball.h"
 #include "spikes.h"
 #include "feraligatr.h"
+#include "gastly.h"
 
 using namespace std;
 
@@ -19,11 +20,12 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	parent_ = parent;
 	
 	//Generating images from files
-	QPixmap* playerSprite = new QPixmap(QString("charizardSprite.png")); //charizard player image
-	QPixmap* upperSpikesSprite = new QPixmap(QString("upperSpikesSprite.png")); //upper spikes image
-	QPixmap* lowerSpikesSprite = new QPixmap(QString("lowerSpikesSprite.png")); //lower spikes image
-	QPixmap* feraligatrSprite = new QPixmap(QString("feraligatrSprite.png")); //feraligatr image
-	QPixmap* fireballSprite = new QPixmap(QString("fireballSprite.png")); //fireball image
+	playerSprite = new QPixmap(QString("charizardSprite.png")); //charizard player image
+	upperSpikesSprite = new QPixmap(QString("upperSpikesSprite.png")); //upper spikes image
+	lowerSpikesSprite = new QPixmap(QString("lowerSpikesSprite.png")); //lower spikes image
+	feraligatrSprite = new QPixmap(QString("feraligatrSprite.png")); //feraligatr image
+	fireballSprite = new QPixmap(QString("fireballSprite.png")); //fireball image
+	gastlySprite = new QPixmap(QString("gastlySprite.png")); //gastly image
 	
 	
 	//creating background instance and generating scrolling
@@ -45,24 +47,17 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene->addItem(upperSpikes);
 	Spikes* lowerSpikes = new Spikes(lowerSpikesSprite,0,368);
 	scene->addItem(lowerSpikes);
-	
-	
-	//creating Feraligatr instance
-	Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
-	scene->addItem(gatr);
-	thingList.push_back(gatr);
-	
-	//create fireball instance
-	Fireball* fire = new Fireball(fireballSprite,1000,200);
-	scene->addItem(fire);
-	thingList.push_back(fire);
-	
-	
+
 	
 	//make all objects move
 	for (int i = 0; i<thingList.size(); i++)
 	{
 		thingList[i]->move();
+		if (thingList[i]->getX() == -1)
+		{
+			delete thingList[i];
+			thingList.remove(thingList[i]);
+		}
 	}
 
 	this->setFixedSize(1044,420);
@@ -112,6 +107,34 @@ bool GraphicWindow::checkForSpikes()
 		return true;
 	}
 	
+}
+
+void GraphicWindow::generateObject()
+{
+	int val = rand() %2000;
+	if (val == 0) //fireball
+	{
+		//create fireball instance
+		Fireball* fire = new Fireball(fireballSprite,1000,200);
+		scene->addItem(fire);
+		thingList.push_back(fire);
+	}
+	if (val > 0 && val <= 5)
+	{
+		//creating Feraligatr instance
+		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
+		scene->addItem(gatr);
+		thingList.push_back(gatr);
+	}
+	if (val > 5 && val <= 30)
+	{
+		//creating Gastly instance
+		Gastly* gas = new Gastly(gastlySprite,1000, 50);
+		scene->addItem(gas);
+		thingList.push_back(gas);
+	}
+	
+
 }
 
 void GraphicWindow::objectMovement()
