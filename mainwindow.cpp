@@ -14,20 +14,58 @@ void MainWindow::startGame()
 	gameStarted = true;
 	game = new GraphicWindow(this);
 	this->setCentralWidget(game);
-	connect(timer, SIGNAL(timeout()), this, SLOT(loopBG()));
+	connect(timer, SIGNAL(timeout()), this, SLOT(loop()));
 	timer->start();
 	//userName_ = userName->text(); //storing user name
 } 
 
-void MainWindow::loopBG()
+void MainWindow::pauseGame()
+{
+	timer->stop();
+	pauseButton->setText("Resume");
+	connect(pauseButton, SIGNAL(clicked()), this, SLOT(resumeGame()));
+}
+
+void MainWindow::resumeGame()
+{
+	timer->start();
+	pauseButton->setText("Pause");
+	connect(pauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
+}
+
+void MainWindow::loop()
 {
 	game->moveBG();
+	if (!spacePressed)
+	{
+		game->player->setPos(150, game->playerPos+1);
+		game->playerPos+=1;
+	}
+	else
+	{
+		game->flyUp();
+	}
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *e)
+{
+	spacePressed = true;
+		if (e->key() == Qt::Key_Space)
+		{
+			//game->flyUp();
+		}
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *e)
+{
+	spacePressed = false;
 }
 
 
 MainWindow::MainWindow()
 {
 	gameStarted = false;
+	spacePressed = false;
 	
 	//timer
 	//start when start is clicked
@@ -64,6 +102,7 @@ MainWindow::MainWindow()
     pauseButton = new QPushButton();
     pauseButton->setText("Pause");
     buttonLayout->addWidget(pauseButton);
+    connect(pauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
     
     //quit button: closes program
     quitButton = new QPushButton();

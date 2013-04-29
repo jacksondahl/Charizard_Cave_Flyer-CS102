@@ -12,6 +12,7 @@
 #include "GraphicWindow.h"
 #include <QTimer>
 #include <string>
+#include <QKeyEvent>
 
 class GraphicWindow;
 
@@ -25,10 +26,16 @@ public:
     
     //flags
     bool gameStarted;
+    bool spacePressed;
     
     //timer
 	QTimer* timer;
-   
+	
+	
+protected:
+	void keyPressEvent(QKeyEvent *e);
+	void keyReleaseEvent(QKeyEvent *e);
+
 	
 private:
 	//widgets
@@ -65,7 +72,9 @@ private:
 public slots:
 void closeGame();
 void startGame();
-void loopBG();
+void pauseGame();
+void resumeGame();
+void loop();
 };
 
 #endif
