@@ -6,7 +6,6 @@ Spikes::Spikes(QPixmap *pm, int nx, int ny) : Thing(pm, nx, ny)
 
 }
 
-
 //deconstructor
 Spikes::~Spikes()
 {
