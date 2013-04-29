@@ -11,6 +11,9 @@ class Feraligatr : public Thing
 		Feraligatr(QPixmap *pm, int nx, int ny);
 		~Feraligatr();
 		void move();
+		bool isJumping;
+		int jumpUpCounter;
+		int jumpDownCounter;
 };
 
 #endif

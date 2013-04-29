@@ -13,7 +13,7 @@ class Thing : public QGraphicsPixmapItem
 		virtual void move() = 0;
 		//virtual void collidesWithItem() = 0;
 		
-	private:
+	protected:
 		int x;
 		int y;
 		int velX;

@@ -23,3 +23,8 @@ void Charizard::collidesWithItem(Thing* t)
 {
 	
 }
+
+void Charizard::changeImage(QPixmap *pm)
+{
+	setPixmap(*pm);
+}

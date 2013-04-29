@@ -3,7 +3,9 @@
 //constructor
 Feraligatr::Feraligatr(QPixmap *pm, int nx, int ny) : Thing(pm, nx, ny)
 {
-
+	isJumping = false;
+	jumpUpCounter = 0;
+	jumpDownCounter = 0;
 }
 
 
@@ -16,15 +18,37 @@ Feraligatr::~Feraligatr()
 //move function
 void Feraligatr::move()
 {
-	//generate random number 
-	//jump on certain numbers
-	//if not jumping and number is correct,
-	//	set jumping to true
-	//	then move up
+	setPos(x-2,y);
+	x-=2;
+	int num = rand() %100;
+	if (isJumping) //already jumping
+	{
+		if (jumpUpCounter > 30) //reached peak, come down
+		{
+			 setPos(x,y+3);
+			 y+=3;
+			 jumpDownCounter++;
+			 if (jumpDownCounter > 30) //reached bottom
+			 {
+			 	jumpDownCounter = 0;
+			 	jumpUpCounter = 0; //start over
+			 	isJumping = false; // no longer jumping
+			 }
+		}
+		else //keep going
+		{
+			setPos(x,y-3);
+			y-=3;
+			jumpUpCounter++;
+		}
+	}
+	else if (!isJumping && num == 0) //start jumping
+	{
+		isJumping = true;
+		setPos(x,y-3);
+		y-=3;
+		jumpUpCounter++;	
+	}
+
 	
 }
-
-//have bool in class for if he is jumping
-//counter in class (e.g. 5, for 5 pixels)
-//if counters at max, move him down,
-//if counter isn't max and he's jumping, move up

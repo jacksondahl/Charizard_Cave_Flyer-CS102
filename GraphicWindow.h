@@ -12,6 +12,7 @@
 #include "thing.h"
 #include "charizard.h"
 #include <QTimer>
+#include <vector>
 
 
 class MainWindow;
@@ -28,6 +29,7 @@ public:
     int playerPos;
     Charizard* player; //player
     bool checkForSpikes();
+    void objectMovement();
     
 private:
     QGraphicsScene *scene;
@@ -36,6 +38,7 @@ private:
     QGraphicsPixmapItem* bg2; //second instance of background used for scrolling
     int *numArr;
     int topLX;
+    std::vector<Thing*> thingList;
 
 public slots:
 

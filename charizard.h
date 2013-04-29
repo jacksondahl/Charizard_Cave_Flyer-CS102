@@ -12,6 +12,8 @@ class Charizard : public Thing
 		~Charizard();
 		void move();
 		void collidesWithItem(Thing* t);
+		bool invincible;
+		void changeImage(QPixmap *pm);
 };
 
 #endif

@@ -24,8 +24,6 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	QPixmap* feraligatrSprite = new QPixmap(QString("feraligatrSprite.png")); //feraligatr image
 	QPixmap* fireballSprite = new QPixmap(QString("fireballSprite.png")); //fireball image
 	
-	vector<Thing*> thingList;
-	
 	
 	//creating background instance and generating scrolling
 	bg = new QGraphicsPixmapItem();
@@ -36,7 +34,7 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene->addItem(bg);
 	scene->addItem(bg2);
 	
-	//creating player instanc
+	//creating player instance
 	playerPos=150;
 	player = new Charizard(playerSprite,150,playerPos);
 	scene->addItem(player);
@@ -46,8 +44,6 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene->addItem(upperSpikes);
 	Spikes* lowerSpikes = new Spikes(lowerSpikesSprite,0,368);
 	scene->addItem(lowerSpikes);
-	
-	
 	
 	//creating Feraligatr instance
 	Feraligatr* gatr = new Feraligatr(feraligatrSprite,800,310);
@@ -78,6 +74,8 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 		 //do something
 		}
 	}
+	
+	//player->invincible = true; - only if you get fireball
 	
 	const QRectF rect = QRectF(0,0,1024,400);
 	this->setSceneRect(rect);
@@ -112,13 +110,22 @@ void GraphicWindow::flyUp()
 bool GraphicWindow::checkForSpikes()
 {
 	const QRectF playerRect(150,playerPos,80,60);
-	const QRectF upperSpikesRect(0,0,1024,32);
-	const QRectF lowerSpikesRect(0,368,1024,32);
+	const QRectF upperSpikesRect(0,0,1024,30);
+	const QRectF lowerSpikesRect(0,370,1024,32);
 	if ((playerRect.intersects(upperSpikesRect)) || (playerRect.intersects(lowerSpikesRect)))
 	{
 		return true;
 	}
 	
-	//if (playerPos == 32) //death
 }
+
+void GraphicWindow::objectMovement()
+{
+	//make all objects move
+	for (int i = 0; i<thingList.size(); i++)
+	{
+		thingList[i]->move();
+	}
+}
+
 

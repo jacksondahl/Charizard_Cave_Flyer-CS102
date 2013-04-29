@@ -21,7 +21,7 @@ void MainWindow::startGame()
 */
 	gameStarted = true;
 	userName_ = userName->text(); //storing user name
-	outputLabel->setText("Player: "+userName_+"\n Score:"+score+"\n Press space to fly, P to pause and Q to quit.");
+	outputLabel->setText("Player: "+userName_+"\n Score:"+score+"\n Press shift to fly, P to pause and Q to quit.");
 	userName->hide();
 	startButton->hide();
 	game = new GraphicWindow(this);
@@ -77,8 +77,19 @@ void MainWindow::keyPause()
 
 void MainWindow::loop()
 {
+	if (game->player->invincible)
+	{
+		invincibilityCounter++;
+		if (invincibilityCounter == 200)
+		{
+			game->player->invincible = false;
+		}
+	}
 	game->moveBG();
-	if (!spacePressed)
+	
+	game->objectMovement();
+	
+	if ((!spacePressed && game->playerPos < 310) || (spacePressed && game->playerPos < 30))
 	{
 		game->player->setPos(150, game->playerPos+3);
 		game->playerPos+=3;
@@ -87,13 +98,14 @@ void MainWindow::loop()
 	{
 		game->flyUp();
 	}
+	
 	if(game->checkForSpikes())
 	{
 		death();
 	}
 	score++;
 	QString score_ = QString::number(score);
-	outputLabel->setText("Player: "+userName_+"\n Score:" +score_+"");
+	outputLabel->setText("Player: "+userName_+"\n Score:"+score_+"\n Press shift to fly, P to pause and Q to quit.");
 	
 	
 	//speed up
@@ -147,6 +159,10 @@ void MainWindow::keyReleaseEvent(QKeyEvent *e)
 
 void MainWindow::death()
 {
+	if (game->player->invincible)
+	{
+		return;
+	}
 	timer->stop();
 	gameStarted = false;
 	game->hide();

@@ -66,8 +66,9 @@ private:
     //parameters
     QString userName_;
     
-    //vals
+    //vals and counters
    	int score;
+   	int invincibilityCounter;
     
     //QLabel
     QLabel *outputLabel;
