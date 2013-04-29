@@ -2,6 +2,7 @@
 #define THING_H
 
 //abstract superclass to hold "things"
+//user can create a list of things (which is in reality, all types of objects or enemies)
 
 #include <QGraphicsPixmapItem>
 
