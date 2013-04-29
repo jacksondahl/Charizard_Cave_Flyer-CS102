@@ -25,7 +25,11 @@ public:
     
     //flags
     bool gameStarted;
+    
+    //timer
+	QTimer* timer;
    
+	
 private:
 	//widgets
 	QDockWidget *rightPanel;
@@ -58,11 +62,10 @@ private:
     
     
     
-    
-    
 public slots:
 void closeGame();
 void startGame();
+void loopBG();
 };
 
 #endif

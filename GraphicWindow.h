@@ -11,6 +11,7 @@
 #include "mainwindow.h"
 #include "thing.h"
 #include "charizard.h"
+#include <QTimer>
 
 class MainWindow;
 
@@ -21,17 +22,19 @@ class GraphicWindow : public QGraphicsView
 public:
     explicit GraphicWindow(MainWindow *parent);
     ~GraphicWindow();
-   
+   void moveBG();
     
 private:
     QGraphicsScene *scene;
     MainWindow *parent_;
-    QGraphicsPixmapItem* background;
+    QGraphicsPixmapItem* bg;
+    QGraphicsPixmapItem* bg2; //second instance of background used for scrolling
     int *numArr;
-   // QTimer timer;
-    
+    int topLX;
 
 public slots:
+
+
 };
 
 #endif

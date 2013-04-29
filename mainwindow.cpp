@@ -8,16 +8,31 @@ void MainWindow::closeGame()
 	QWidget::close();
 }
 
+
 void MainWindow::startGame()
 {
 	gameStarted = true;
+	game = new GraphicWindow(this);
+	this->setCentralWidget(game);
+	connect(timer, SIGNAL(timeout()), this, SLOT(loopBG()));
+	timer->start();
 	//userName_ = userName->text(); //storing user name
 } 
+
+void MainWindow::loopBG()
+{
+	game->moveBG();
+}
 
 
 MainWindow::MainWindow()
 {
 	gameStarted = false;
+	
+	//timer
+	//start when start is clicked
+	timer = new QTimer(this);
+	timer->setInterval(1000/24);
 	
 	
   	bottomPanel = new QDockWidget;
@@ -29,7 +44,7 @@ MainWindow::MainWindow()
   	buttons = new QWidget;
   	controls = new QWidget;
   	
-   	game = new GraphicWindow(this);
+   //	game = new GraphicWindow(this);
     
     buttonLayout = new QVBoxLayout;
     controlLayout = new QVBoxLayout;
@@ -69,9 +84,9 @@ MainWindow::MainWindow()
     
 	this->addDockWidget(Qt::BottomDockWidgetArea,bottomPanel);
 	this->addDockWidget(Qt::TopDockWidgetArea,topPanel);
-	this->setCentralWidget(game);
+	//this->setCentralWidget(game);
 	
-	//this->setFixedSize(855,655);
+	//this->setFixedSize(800,400);
     
 }
 

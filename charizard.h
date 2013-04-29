@@ -2,6 +2,7 @@
 #define CHARIZARD_H
 
 #include <QGraphicsPixmapItem>
+#include <QPixmap>
 #include "thing.h"
 
 class Charizard : public Thing
