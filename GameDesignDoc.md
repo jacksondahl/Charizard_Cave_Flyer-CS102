@@ -21,7 +21,7 @@ The score increases the longer the player stays alive without dying.
 The player has one life. The player dies when Charizard hits any kind of enemy or the top or bottom of the gave. 
 
 ###Immunity
-One of the 5 objects are fireballs (image pending - small flame balls that move randomly and are rare). If Charizard hits (eats) one of these, he will be invincible for 10 seconds (meaning he can hit any object or the top or bottom without dying).
+One of the 5 objects are fireballs [Click to view] (http://mmii.info/icons/Koole321/pokemon_fireType.gif) - small flame balls that move randomly and are rare). If Charizard hits (eats) one of these, he will be invincible for 10 seconds (meaning he can hit any object or the top or bottom without dying).
 
 ###Cave Walls
 The cave walls, the one nonmoving object drawn in the layout below, will be spikey on the top and bottom. If Charizard hits these walls by either sinking too far or flying too high, he will die.
