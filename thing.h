@@ -11,6 +11,7 @@ class Thing : public QGraphicsPixmapItem
 	public:
 		Thing(QPixmap *pm, int nx, int ny);
 		virtual void move() = 0;
+		//virtual void collidesWithItem() = 0;
 		
 	private:
 		int x;

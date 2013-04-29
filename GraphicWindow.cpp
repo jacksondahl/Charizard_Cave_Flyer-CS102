@@ -19,7 +19,8 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	
 	//Generating images from files
 	QPixmap* playerSprite = new QPixmap(QString("charizardSprite.png")); //charizard player image
-	QPixmap* spikesSprite = new QPixmap(QString("spikesSprite.png")); //spikes image
+	QPixmap* upperSpikesSprite = new QPixmap(QString("upperSpikesSprite.png")); //upper spikes image
+	QPixmap* lowerSpikesSprite = new QPixmap(QString("lowerSpikesSprite.png")); //lower spikes image
 	QPixmap* feraligatrSprite = new QPixmap(QString("feraligatrSprite.png")); //feraligatr image
 	QPixmap* fireballSprite = new QPixmap(QString("fireballSprite.png")); //fireball image
 	
@@ -41,8 +42,11 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene->addItem(player);
 	
 	//creating spikes instance
-	Spikes* spikes = new Spikes(spikesSprite,0,0);
-	scene->addItem(spikes);
+	Spikes* upperSpikes = new Spikes(upperSpikesSprite,0,0);
+	scene->addItem(upperSpikes);
+	Spikes* lowerSpikes = new Spikes(lowerSpikesSprite,0,368);
+	scene->addItem(lowerSpikes);
+	
 	
 	
 	//creating Feraligatr instance
@@ -66,6 +70,14 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	topLX = 0;
 	setScene(scene);
 	
+	for (int i=0; i<thingList.size(); i++)
+	{
+		Thing* itemA = thingList[i];
+		//if (player->collidesWithItem(itemA))
+		{
+		 //do something
+		}
+	}
 	
 	const QRectF rect = QRectF(0,0,1024,400);
 	this->setSceneRect(rect);

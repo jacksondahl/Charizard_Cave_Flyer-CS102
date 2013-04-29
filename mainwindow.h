@@ -44,12 +44,12 @@ private:
 	QDockWidget *leftPanel;
 	QDockWidget *topPanel;
 	QDockWidget *bottomPanel;
-	QWidget *buttons;
-	QWidget *controls;
+	QWidget *input;
+	QWidget *output;
 	
 	//layouts
-	QVBoxLayout *controlLayout;
-	QVBoxLayout *buttonLayout;
+	QVBoxLayout *outputLayout;
+	QVBoxLayout *inputLayout;
 
 	//scenes/views
    	GraphicWindow *game;
@@ -63,7 +63,7 @@ private:
     QLineEdit *userName;
     
     //parameters
-    std::string userName_;
+    QString userName_;
     
     //QLabel
     QLabel *outputLabel;

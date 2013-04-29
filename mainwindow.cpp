@@ -11,20 +11,36 @@ void MainWindow::closeGame()
 
 void MainWindow::startGame()
 {
+/*
+	if (userName_.length() == 0)
+	{
+		outputLabel->setText("You must enter your name before beginning the game.\n Type your name and press enter or click start to begin.");
+		return;
+	}
+*/
 	gameStarted = true;
+	userName_ = userName->text(); //storing user name
+	outputLabel->setText("Player: "+userName_+"\n Score: \n Press space to fly, P to pause and Q to quit.");
+	userName->hide();
+	startButton->hide();
 	game = new GraphicWindow(this);
 	this->setCentralWidget(game);
 	connect(timer, SIGNAL(timeout()), this, SLOT(loop()));
 	timer->start();
-	//userName_ = userName->text(); //storing user name
+	bottomPanel->hide();
 } 
 
 void MainWindow::pauseGame()
 {
+	if (!gameStarted)
+	{
+		return;
+	}
 	timer->stop();
 	pauseButton->setText("Resume");
 	connect(pauseButton, SIGNAL(clicked()), this, SLOT(resumeGame()));
 	isPaused = true;
+	bottomPanel->show();
 }
 
 void MainWindow::resumeGame()
@@ -33,22 +49,29 @@ void MainWindow::resumeGame()
 	pauseButton->setText("Pause");
 	connect(pauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
 	isPaused = false;
+	bottomPanel->hide();
 }
 
 void MainWindow::keyPause()
 {
+	if (!gameStarted)
+	{
+		return;
+	}
 	if (!isPaused)
 	{
 		timer->stop();
 		isPaused = true;
 		pauseGame();
+		bottomPanel->show();
 	}
 	else if (isPaused)
 	{
 		timer->start();
 		isPaused = false;
 		resumeGame();
-	}
+		bottomPanel->hide();
+	}	
 }
 
 void MainWindow::loop()
@@ -76,6 +99,10 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 		{
 			keyPause();
 		}
+		if (e->key() == Qt::Key_Q)
+		{
+			QWidget::close();
+		}
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *e)
@@ -102,53 +129,54 @@ MainWindow::MainWindow()
   	bottomPanel->setFeatures(0);
   	topPanel->setFeatures(0);
   	
-  	buttons = new QWidget;
-  	controls = new QWidget;
+  	input = new QWidget;
+  	output = new QWidget;
   	
-   //	game = new GraphicWindow(this);
+   //game = new GraphicWindow(this);
     
-    buttonLayout = new QVBoxLayout;
-    controlLayout = new QVBoxLayout;
+    inputLayout = new QVBoxLayout;
+    outputLayout = new QVBoxLayout;
     
 	//Board Size input box
     userName = new QLineEdit;
     userName->setPlaceholderText("Enter Your Name");
-	buttonLayout->addWidget(userName);
+	inputLayout->addWidget(userName);
     
     //Start Game button: starts a tile game
     startButton = new QPushButton();
     startButton->setText("Start Game");
-    buttonLayout->addWidget(startButton);
+    inputLayout->addWidget(startButton);
     connect(startButton, SIGNAL(clicked()), this, SLOT(startGame()));
+    
+    connect(userName, SIGNAL(returnPressed()),startButton,SIGNAL(clicked())); //used so enter can be pressed when in line edit
     
     //Cheat button: runs A* Algorithm
     pauseButton = new QPushButton();
     pauseButton->setText("Pause");
-    buttonLayout->addWidget(pauseButton);
+    inputLayout->addWidget(pauseButton);
     connect(pauseButton, SIGNAL(clicked()), this, SLOT(pauseGame()));
     
     //quit button: closes program
     quitButton = new QPushButton();
     quitButton->setText("Quit");
-    buttonLayout->addWidget(quitButton);
+    inputLayout->addWidget(quitButton);
     connect(quitButton, SIGNAL(clicked()), this, SLOT(closeGame()));
     
-		//Qlabel output
+	//Qlabel output
 	outputLabel = new QLabel(this);
 	outputLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-	outputLabel->setText("Enter your name and click start to begin the game.");
-	controlLayout->addWidget(outputLabel);
+	outputLabel->setText("Enter your name and press enter or click start to begin the game.");
+	outputLayout->addWidget(outputLabel);
 	
-	buttons->setLayout(buttonLayout);
-	controls->setLayout(controlLayout);
-	bottomPanel->setWidget(buttons);
-	topPanel->setWidget(controls);
+	input->setLayout(inputLayout);
+	output->setLayout(outputLayout);
+	bottomPanel->setWidget(input);
+	topPanel->setWidget(output);
     
 	this->addDockWidget(Qt::BottomDockWidgetArea,bottomPanel);
 	this->addDockWidget(Qt::TopDockWidgetArea,topPanel);
 	//this->setCentralWidget(game);
 	
-	//this->setFixedSize(800,400);
     
 }
 
