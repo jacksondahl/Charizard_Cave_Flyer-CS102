@@ -54,6 +54,11 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	topLX = 0;
 	setScene(scene);
 	
+	
+	
+	
+	const QRectF rect = QRectF(0,0,1024,420);
+	this->setSceneRect(rect);
 }
 
 GraphicWindow::~GraphicWindow()
@@ -74,6 +79,4 @@ void GraphicWindow::moveBG()
 		bg2->setPos(1024,0);
 		topLX = 0;
 	}
-	//if topleft x < midpoint
-	//then bg->setPos(-topLeftx)
 }

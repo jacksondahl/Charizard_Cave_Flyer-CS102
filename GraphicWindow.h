@@ -31,6 +31,7 @@ private:
     QGraphicsPixmapItem* bg2; //second instance of background used for scrolling
     int *numArr;
     int topLX;
+    //void scrollContentsBy(int x, int y) {};
 
 public slots:
 
