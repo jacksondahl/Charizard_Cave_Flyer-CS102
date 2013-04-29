@@ -1,6 +1,6 @@
 #include "thing.h"
 
-Thing::Thing(GraphicWindow* parent, QPixmap* p, int nx, int ny)
+Thing::Thing(QPixmap* p, int nx, int ny)
 {
 	pixMap = p;
 	setPixmap(*p);

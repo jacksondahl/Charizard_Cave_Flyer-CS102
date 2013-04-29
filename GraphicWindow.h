@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QGraphicsPixmapItem>
 #include "mainwindow.h"
+#include "thing.h"
 #include "charizard.h"
 
 class MainWindow;

@@ -1,6 +1,7 @@
 #include "GraphicWindow.h"
 #include <cmath>
 #include <QtAlgorithms>
+#include <QBrush>
 #include <iostream>
 #include "charizard.h"
 
@@ -18,11 +19,10 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
   
   //creating player instance
   QPixmap* playerSprite = new QPixmap(QString("charizardSprite.png"));
-  Charizard* player = new Charizard(this, playerSprite,100,100);
+  Charizard* player = new Charizard(playerSprite,100,100);
   player->setPos(100,100);
   scene->addItem(player);
-  
-  
+
   setScene(scene);
 }
 

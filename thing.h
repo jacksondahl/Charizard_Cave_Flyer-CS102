@@ -4,15 +4,12 @@
 //abstract superclass to hold "things"
 
 #include <QGraphicsPixmapItem>
-#include "GraphicWindow.h"
-
-class GraphicWindow;
 
 class Thing : public QGraphicsPixmapItem
 {
 	public:
-		Thing(GraphicWindow* parent, QPixmap *pm, int nx, int ny);
-		virtual void move();
+		Thing(QPixmap *pm, int nx, int ny);
+		virtual void move() = 0;
 		
 	private:
 		int x;
