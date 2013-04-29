@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void MainWindow::startGame()
 */
 	gameStarted = true;
 	userName_ = userName->text(); //storing user name
-	outputLabel->setText("Player: "+userName_+"\n Score: \n Press space to fly, P to pause and Q to quit.");
+	outputLabel->setText("Player: "+userName_+"\n Score:"+score+"\n Press space to fly, P to pause and Q to quit.");
 	userName->hide();
 	startButton->hide();
 	game = new GraphicWindow(this);
@@ -86,11 +87,45 @@ void MainWindow::loop()
 	{
 		game->flyUp();
 	}
+	if(game->checkForSpikes())
+	{
+		death();
+	}
+	score++;
+	QString score_ = QString::number(score);
+	outputLabel->setText("Player: "+userName_+"\n Score:" +score_+"");
+	
+	
+	//speed up
+	if (score == 250)
+	{
+		timer->setInterval(750/24);
+	}
+	
+	if (score == 750)
+	{
+		timer->setInterval(500/24);
+	}
+	
+	if (score == 1500)
+	{
+		timer->setInterval(250/24);
+	}
+	
+	if (score == 3000)
+	{
+		timer->setInterval(125/24);
+	}
+	
+	if (score == 5000)
+	{
+		timer->setInterval(75/24);
+	}
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {
-		if (e->key() == Qt::Key_Space)
+		if (e->key() == Qt::Key_Shift)
 		{
 			spacePressed = true;
 			//game->flyUp();
@@ -110,12 +145,25 @@ void MainWindow::keyReleaseEvent(QKeyEvent *e)
 	spacePressed = false;
 }
 
+void MainWindow::death()
+{
+	timer->stop();
+	gameStarted = false;
+	game->hide();
+	outputLabel->setText("GAME OVER.\n Player: "+userName_+"\n Score: "+score+"");
+	bottomPanel->show();
+	this->setFixedSize(400,200);
+	pauseButton->hide();
+}
+
 
 MainWindow::MainWindow()
 {
 	gameStarted = false;
 	spacePressed = false;
 	isPaused = false;
+	
+	score = 0;
 	
 	//timer
 	//start when start is clicked

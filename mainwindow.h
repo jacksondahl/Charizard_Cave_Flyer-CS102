@@ -13,6 +13,7 @@
 #include <QTimer>
 #include <string>
 #include <QKeyEvent>
+#include <QString>
 
 class GraphicWindow;
 
@@ -65,10 +66,14 @@ private:
     //parameters
     QString userName_;
     
+    //vals
+   	int score;
+    
     //QLabel
     QLabel *outputLabel;
     
     void keyPause();
+    void death();
     
     
 public slots:

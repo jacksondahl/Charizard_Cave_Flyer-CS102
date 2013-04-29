@@ -27,6 +27,7 @@ public:
    void flyUp();
     int playerPos;
     Charizard* player; //player
+    bool checkForSpikes();
     
 private:
     QGraphicsScene *scene;

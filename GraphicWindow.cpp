@@ -109,3 +109,16 @@ void GraphicWindow::flyUp()
 	playerPos-=5;
 }
 
+bool GraphicWindow::checkForSpikes()
+{
+	const QRectF playerRect(150,playerPos,80,60);
+	const QRectF upperSpikesRect(0,0,1024,32);
+	const QRectF lowerSpikesRect(0,368,1024,32);
+	if ((playerRect.intersects(upperSpikesRect)) || (playerRect.intersects(lowerSpikesRect)))
+	{
+		return true;
+	}
+	
+	//if (playerPos == 32) //death
+}
+
