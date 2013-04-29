@@ -8,6 +8,7 @@
 #include "spikes.h"
 #include "feraligatr.h"
 #include "gastly.h"
+#include "wingull.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	feraligatrSprite = new QPixmap(QString("feraligatrSprite.png")); //feraligatr image
 	fireballSprite = new QPixmap(QString("fireballSprite.png")); //fireball image
 	gastlySprite = new QPixmap(QString("gastlySprite.png")); //gastly image
+	wingullSprite = new QPixmap(QString("wingullSprite.png"));//wingull image
 	
 	
 	//creating background instance and generating scrolling
@@ -48,17 +50,10 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	Spikes* lowerSpikes = new Spikes(lowerSpikesSprite,0,368);
 	scene->addItem(lowerSpikes);
 
+	bool gasHold = false;
+	bool gatrHold = false;
+	bool fireHold = false;
 	
-	//make all objects move
-	for (int i = 0; i<thingList.size(); i++)
-	{
-		thingList[i]->move();
-		if (thingList[i]->getX() == -1)
-		{
-			delete thingList[i];
-			thingList.remove(thingList[i]);
-		}
-	}
 
 	this->setFixedSize(1044,420);
 	topLX = 0;
@@ -112,29 +107,48 @@ bool GraphicWindow::checkForSpikes()
 void GraphicWindow::generateObject()
 {
 	int val = rand() %2000;
-	if (val == 0) //fireball
+	if (val == 0 && !fireHold) //fireball
 	{
 		//create fireball instance
 		Fireball* fire = new Fireball(fireballSprite,1000,200);
 		scene->addItem(fire);
 		thingList.push_back(fire);
+		fireHold = true;
+		gasHold = false;
+		gatrHold = false;
 	}
-	if (val > 0 && val <= 5)
+	if (val > 0 && val <= 5 && !gatrHold)
 	{
 		//creating Feraligatr instance
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
 		scene->addItem(gatr);
 		thingList.push_back(gatr);
+		fireHold = false;
+		gasHold = false;
+		gatrHold = true;
 	}
-	if (val > 5 && val <= 30)
+	if (val > 5 && val <= 25 && !gasHold)
 	{
 		//creating Gastly instance
-		Gastly* gas = new Gastly(gastlySprite,1000, 50);
+		int yPos = rand() %280 + 30;
+		Gastly* gas = new Gastly(gastlySprite,1000, yPos);
 		scene->addItem(gas);
 		thingList.push_back(gas);
+		gasHold = true;
+		fireHold = false;
+		gatrHold = false;
 	}
-	
-
+	if (val > 25 && val <= 50)
+	{
+		int yPos = rand() %280 + 30;
+		//creating wingull instance
+		Wingull* wing = new Wingull(wingullSprite,1000, yPos);
+		scene->addItem(wing);
+		thingList.push_back(wing);
+		fireHold = false;
+		gasHold = false;
+		gatrHold = false;
+	}
 }
 
 void GraphicWindow::objectMovement()
@@ -143,6 +157,11 @@ void GraphicWindow::objectMovement()
 	for (int i = 0; i<thingList.size(); i++)
 	{
 		thingList[i]->move();
+		if (thingList[i]->getX() == -1)
+		{
+			delete thingList[i];
+			thingList.remove(thingList[i]);
+		}
 	}
 }
 

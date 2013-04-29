@@ -51,6 +51,13 @@ private:
 	QPixmap* feraligatrSprite; //feraligatr image
 	QPixmap* fireballSprite; //fireball image
 	QPixmap* gastlySprite; //gastly image
+	QPixmap* wingullSprite; //wingull image
+	
+	//bools used in generation of ojbects (hold an object from being generated again until a different object has been generated
+	//prevent duplicate objects from being created randomly, except for wingull which is most common enemy
+	bool gasHold;
+	bool gatrHold;
+	bool fireHold;
 
 public slots:
 
