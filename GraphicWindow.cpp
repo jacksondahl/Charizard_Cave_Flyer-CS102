@@ -17,8 +17,6 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	scene = new QGraphicsScene(this);
 	parent_ = parent;
 	
-	
-	
 	//creating background instance
 	
 	bg = new QGraphicsPixmapItem();
