@@ -99,7 +99,7 @@ void MainWindow::loop()
 		game->flyUp();
 	}
 	
-	if(game->checkForSpikes())
+	if(game->checkForSpikes() || game->checkForCollision())
 	{
 		death();
 	}

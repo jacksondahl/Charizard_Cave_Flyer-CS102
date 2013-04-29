@@ -12,6 +12,7 @@ using namespace std;
 
 GraphicWindow::GraphicWindow(MainWindow *parent)
 {
+	m = parent;
 	setFocus();
 	//creating scene
 	scene = new QGraphicsScene(this);
@@ -45,15 +46,17 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	Spikes* lowerSpikes = new Spikes(lowerSpikesSprite,0,368);
 	scene->addItem(lowerSpikes);
 	
+	
 	//creating Feraligatr instance
-	Feraligatr* gatr = new Feraligatr(feraligatrSprite,800,310);
+	Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
 	scene->addItem(gatr);
 	thingList.push_back(gatr);
 	
 	//create fireball instance
-	Fireball* fire = new Fireball(fireballSprite,400,200);
+	Fireball* fire = new Fireball(fireballSprite,1000,200);
 	scene->addItem(fire);
 	thingList.push_back(fire);
+	
 	
 	
 	//make all objects move
@@ -66,14 +69,6 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	topLX = 0;
 	setScene(scene);
 	
-	for (int i=0; i<thingList.size(); i++)
-	{
-		Thing* itemA = thingList[i];
-		//if (player->collidesWithItem(itemA))
-		{
-		 //do something
-		}
-	}
 	
 	//player->invincible = true; - only if you get fireball
 	
@@ -128,4 +123,14 @@ void GraphicWindow::objectMovement()
 	}
 }
 
+bool GraphicWindow::checkForCollision()
+{
+	for (int i=0; i<thingList.size(); i++)
+	{
+		Thing* t = thingList[i];
+		return player->collidesWithItem(t);
+		
+	}
+	return false;
+}
 

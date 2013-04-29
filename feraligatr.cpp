@@ -23,12 +23,12 @@ void Feraligatr::move()
 	int num = rand() %100;
 	if (isJumping) //already jumping
 	{
-		if (jumpUpCounter > 30) //reached peak, come down
+		if (jumpUpCounter > 40) //reached peak, come down
 		{
 			 setPos(x,y+3);
 			 y+=3;
 			 jumpDownCounter++;
-			 if (jumpDownCounter > 30) //reached bottom
+			 if (jumpDownCounter > 40) //reached bottom
 			 {
 			 	jumpDownCounter = 0;
 			 	jumpUpCounter = 0; //start over

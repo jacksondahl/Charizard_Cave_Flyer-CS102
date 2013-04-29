@@ -13,6 +13,7 @@
 #include "charizard.h"
 #include <QTimer>
 #include <vector>
+#include "mylist.h"
 
 
 class MainWindow;
@@ -29,7 +30,8 @@ public:
     int playerPos;
     Charizard* player; //player
     bool checkForSpikes();
-    void objectMovement();
+    void objectMovement(); //moves objects and checks for collisions
+	bool checkForCollision();
     
 private:
     QGraphicsScene *scene;
@@ -38,7 +40,8 @@ private:
     QGraphicsPixmapItem* bg2; //second instance of background used for scrolling
     int *numArr;
     int topLX;
-    std::vector<Thing*> thingList;
+    MyList<Thing*> thingList;
+    MainWindow* m;
 
 public slots:
 

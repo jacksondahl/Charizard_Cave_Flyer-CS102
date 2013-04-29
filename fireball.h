@@ -11,6 +11,8 @@ class Fireball : public Thing
 		Fireball(QPixmap *pm, int nx, int ny);
 		~Fireball();
 		void move();
+		int moveCounter;
+		bool goingUp;
 };
 
 #endif

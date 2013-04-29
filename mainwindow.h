@@ -33,6 +33,8 @@ public:
     //timer
 	QTimer* timer;
 	
+	void death();
+	
 	
 protected:
 	void keyPressEvent(QKeyEvent *e);
@@ -74,7 +76,6 @@ private:
     QLabel *outputLabel;
     
     void keyPause();
-    void death();
     
     
 public slots:
