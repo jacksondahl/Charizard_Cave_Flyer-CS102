@@ -5,6 +5,7 @@ Fireball::Fireball(QPixmap *pm, int nx, int ny) : Thing(pm, nx, ny)
 {
 	moveCounter = 0;
 	goingUp = true;
+	isFireball = true;
 }
 
 

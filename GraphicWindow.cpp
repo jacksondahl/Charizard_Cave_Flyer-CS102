@@ -54,6 +54,9 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	bool gatrHold = false;
 	bool fireHold = false;
 	
+	Fireball* fire = new Fireball(fireballSprite,1000,200);
+	scene->addItem(fire);
+	thingList.push_back(fire);
 
 	this->setFixedSize(1044,420);
 	topLX = 0;
@@ -106,7 +109,7 @@ bool GraphicWindow::checkForSpikes()
 void GraphicWindow::generateObject()
 {
 	int val = rand() %2000;
-	if (val <= 3 && !fireHold) //fireball
+	if (val <= 5 && !fireHold) //fireball
 	{
 		//create fireball instance
 		Fireball* fire = new Fireball(fireballSprite,1000,200);
@@ -122,7 +125,6 @@ void GraphicWindow::generateObject()
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
 		scene->addItem(gatr);
 		thingList.push_back(gatr);
-		fireHold = false;
 		gasHold = false;
 		gatrHold = true;
 	}
@@ -134,7 +136,6 @@ void GraphicWindow::generateObject()
 		scene->addItem(gas);
 		thingList.push_back(gas);
 		gasHold = true;
-		fireHold = false;
 		gatrHold = false;
 	}
 	if (val > 30 && val <= 40)
@@ -144,7 +145,6 @@ void GraphicWindow::generateObject()
 		Wingull* wing = new Wingull(wingullSprite,1000, yPos);
 		scene->addItem(wing);
 		thingList.push_back(wing);
-		fireHold = false;
 		gasHold = false;
 		gatrHold = false;
 	}
@@ -171,17 +171,19 @@ bool GraphicWindow::checkForCollision()
 		Thing* t = thingList[i];
 		if(player->collidesWithItem(t))
 		{
+			
 			if (t->getType() == 1)
 			{
-				cout << "fireball" << endl;
-				
-				return false;
+				cout << "hit" << endl;
 				player->invincible = true;
 				delete thingList[i];
 				thingList.remove(thingList[i]);
+				return false;
 			}
+			
 			else
 			{
+			cout << "hit" << endl;
 				return true;
 			}
 		}

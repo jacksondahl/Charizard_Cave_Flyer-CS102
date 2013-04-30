@@ -15,6 +15,7 @@ class Thing : public QGraphicsPixmapItem
 		int getX();
 		int getY();
 		virtual int getType() {return 0;}
+		bool isFireball;
 		
 	protected:
 		int x;

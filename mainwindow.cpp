@@ -20,8 +20,12 @@ void MainWindow::startGame()
 	}
 */
 	gameStarted = true;
+	score = 0;
+	timer = new QTimer(this);
+	timer->setInterval(1000/24);
 	userName_ = userName->text(); //storing user name
 	outputLabel->setText("Player: "+userName_+"\n Score:"+score+"\n Press shift to fly, P to pause and Q to quit.");
+	outputLabel->setAlignment(Qt::AlignCenter);
 	userName->hide();
 	startButton->hide();
 	game = new GraphicWindow(this);
@@ -79,18 +83,22 @@ void MainWindow::loop()
 {
 	if (game->player->invincible)
 	{
+		QString score_ = QString::number(score);
+		outputLabel->setText("Player: "+userName_+"\n Score:"+score_+"\n Press shift to fly, P to pause and Q to quit.\n Currently invincible");
+		
 		invincibilityCounter++;
 		if (invincibilityCounter == 200)
 		{
 			game->player->invincible = false;
+			game->fireHold=false;
 		}
 	}
 	game->moveBG();
 	
-	if ((!spacePressed && game->playerPos < 310) || (spacePressed && game->playerPos < 30))
+	if ((!spacePressed && game->playerPos < 312) || (spacePressed && game->playerPos < 30))
 	{
-		game->player->setPos(150, game->playerPos+2);
-		game->playerPos+=2;
+		game->player->setPos(150, game->playerPos+3);
+		game->playerPos+=3;
 	}
 	else
 	{
@@ -180,10 +188,12 @@ void MainWindow::death()
 	timer->stop();
 	gameStarted = false;
 	game->hide();
+	delete game;
 	QString score_ = QString::number(score);
 	outputLabel->setText("GAME OVER.\n Player: "+userName_+"\n Score: "+score_+"");
+	startButton->setText("Restart Game");
+	startButton->show();
 	bottomPanel->show();
-	this->setFixedSize(400,200);
 	pauseButton->hide();
 }
 
@@ -211,7 +221,7 @@ MainWindow::MainWindow()
   	input = new QWidget;
   	output = new QWidget;
   	
-   //game = new GraphicWindow(this);
+   
     
     inputLayout = new QVBoxLayout;
     outputLayout = new QVBoxLayout;
@@ -254,7 +264,7 @@ MainWindow::MainWindow()
     
 	this->addDockWidget(Qt::BottomDockWidgetArea,bottomPanel);
 	this->addDockWidget(Qt::TopDockWidgetArea,topPanel);
-	//this->setCentralWidget(game);
+
 	
     
 }

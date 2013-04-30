@@ -7,6 +7,7 @@ Thing::Thing(QPixmap* p, int nx, int ny)
 	x = nx;
 	y = ny;
 	setPos(x,y);
+	isFireball = 0;
 }
 
 int Thing::getX()

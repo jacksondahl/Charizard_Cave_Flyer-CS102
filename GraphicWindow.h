@@ -33,6 +33,12 @@ public:
     void objectMovement(); //moves objects and checks for collisions
 	bool checkForCollision();
 	void generateObject();
+	
+	//bools used in generation of ojbects (hold an object from being generated again until a different object has been generated
+	//prevent duplicate objects from being created randomly, except for wingull which is most common enemy
+	bool gasHold;
+	bool gatrHold;
+	bool fireHold; //used to not generate new fireball object if player is already invincible
     
 private:
     QGraphicsScene *scene;
@@ -53,11 +59,6 @@ private:
 	QPixmap* gastlySprite; //gastly image
 	QPixmap* wingullSprite; //wingull image
 	
-	//bools used in generation of ojbects (hold an object from being generated again until a different object has been generated
-	//prevent duplicate objects from being created randomly, except for wingull which is most common enemy
-	bool gasHold;
-	bool gatrHold;
-	bool fireHold;
 
 public slots:
 
