@@ -18,21 +18,21 @@ Wingull::~Wingull()
 //move function
 void Wingull::move()
 {
-	setPos(x-5,y);
-	x -= 5;
+	setPos(x-3,y);
+	x -= 3;
 	if (firstMove)
 	{
 		int val = rand() %2;
 		if (val == 0) // go up
 		{
-			setPos(x,y-3);
-			y -= 3;
+			setPos(x,y-2);
+			y -= 2;
 			up = true;
 		}
 		else // go down
 		{
-			setPos(x,y+3);
-			y += 3;
+			setPos(x,y+2);
+			y += 2;
 			up = false;
 		}
 		firstMove = false;
@@ -43,28 +43,28 @@ void Wingull::move()
 		{
 			if (y <=28) // hit ceiling, go down
 			{
-				setPos(x,y+3);
-				y += 3;
+				setPos(x,y+2);
+				y += 2;
 				up = false;
 			}
 			else 
 			{
-				setPos(x,y-3);
-				y -= 3;
+				setPos(x,y-2);
+				y -= 2;
 			}
 		}
 		else //going down
 		{
 			if (y >= 312) // hit bottom, go up
 			{
-				setPos(x,y-3);
+				setPos(x,y-2);
 				y -= 2;
 				up = true;
 			}
 			else
 			{
-				setPos(x,y+3);
-				y += 3;
+				setPos(x,y+2);
+				y += 2;
 			}
 		}
 	} 

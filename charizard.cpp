@@ -1,5 +1,6 @@
 #include "charizard.h"
 #include <iostream>
+#include "fireball.h"
 
 using namespace std;
 
@@ -9,11 +10,9 @@ Charizard::Charizard(QPixmap *pm, int nx, int ny) : Thing(pm, nx, ny)
 	invincible = false;
 }
 
-
 //deconstructor
 Charizard::~Charizard()
 {
-
 }
 
 //move function
@@ -24,12 +23,12 @@ void Charizard::move()
 
 bool Charizard::collidesWithItem(Thing* t)
 {
-	const QRectF playerRect(x,y,80,60);
-	
+	QRectF playerRect(x,y,80,60);
 	//const QRectF playerRect = boundingRect();
-	const QRectF thingRect = t->boundingRect();
+	QRectF thingRect (t->boundingRect());
+	thingRect.moveTo(QPointF(t->getX(),t->getY()));
 	if ((playerRect.intersects(thingRect)))
-	{
+	{	
 		return true;
 	}
 	else {return false;}

@@ -87,28 +87,27 @@ void MainWindow::loop()
 	}
 	game->moveBG();
 	
-	game->generateObject();
-	
-	game->objectMovement();
-	
 	if ((!spacePressed && game->playerPos < 310) || (spacePressed && game->playerPos < 30))
 	{
-		game->player->setPos(150, game->playerPos+3);
-		game->playerPos+=3;
+		game->player->setPos(150, game->playerPos+2);
+		game->playerPos+=2;
 	}
 	else
 	{
 		game->flyUp();
 	}
 	
-	if(game->checkForSpikes() || game->checkForCollision())
-	{
-		death();
-	}
+	game->generateObject();
+	game->objectMovement();
+	
 	score++;
 	QString score_ = QString::number(score);
 	outputLabel->setText("Player: "+userName_+"\n Score:"+score_+"\n Press shift to fly, P to pause and Q to quit.");
 	
+	if(game->checkForSpikes() || game->checkForCollision())
+	{
+		death();
+	}
 	
 	//speed up
 	if (score == 250)
@@ -147,6 +146,7 @@ void MainWindow::loop()
 	{
 		timer->setInterval(250/24);
 	}
+	
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
@@ -180,7 +180,8 @@ void MainWindow::death()
 	timer->stop();
 	gameStarted = false;
 	game->hide();
-	outputLabel->setText("GAME OVER.\n Player: "+userName_+"\n Score: "+score+"");
+	QString score_ = QString::number(score);
+	outputLabel->setText("GAME OVER.\n Player: "+userName_+"\n Score: "+score_+"");
 	bottomPanel->show();
 	this->setFixedSize(400,200);
 	pauseButton->hide();

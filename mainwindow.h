@@ -77,7 +77,6 @@ private:
     
     void keyPause();
     
-    
 public slots:
 void closeGame();
 void startGame();

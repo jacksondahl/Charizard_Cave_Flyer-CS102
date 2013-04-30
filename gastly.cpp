@@ -19,4 +19,8 @@ void Gastly::move()
 {
 	setPos(x-5,y);
 	x -= 5;
+	int valX = rand() %6 -3;
+	int valY = rand() %6 -3;
+	
+	setPos(x+valX,y+valY);
 }

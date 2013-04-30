@@ -17,40 +17,40 @@ Fireball::~Fireball()
 //move function
 void Fireball::move()
 {
-	setPos(x-15,y);
-	x -= 15;
+	setPos(x-10,y);
+	x -= 10;
 	if (moveCounter == 0 && goingUp) //start or continuing going up
 	{
-		setPos(x,y-8);
-		y -= 8;
+		setPos(x,y-6);
+		y -= 6;
 		moveCounter++;
 	}
 	if (moveCounter == 0 && !goingUp) //continue going down
 	{
-		setPos(x, y+8);
-			y += 8;
+		setPos(x, y+6);
+			y += 6;
 			moveCounter--;
 	}
 	if (moveCounter > 0 && goingUp)
 	{
-		if (moveCounter > 9) //reached peak (5), go back down
+		if (moveCounter > 12) //reached peak (5), go back down
 		{
-			setPos(x, y+8);
-			y += 8;
+			setPos(x, y+6);
+			y += 6;
 			moveCounter--;
 			goingUp = false;
 		}
 		else //keep going up
 		{
-			setPos(x,y-8);
-			y -= 8;
+			setPos(x,y-6);
+			y -= 6;
 			moveCounter++;
 		}
 	}
 	if (moveCounter > 0 && !goingUp) //going down
 	{
-			setPos(x, y+8);
-			y += 8;
+			setPos(x, y+6);
+			y += 6;
 			moveCounter--;
 	}
 	if (moveCounter < 0 && goingUp) //going up
@@ -61,17 +61,17 @@ void Fireball::move()
 	}
 	if (moveCounter < 0 && !goingUp)
 	{
-		if (moveCounter < -9) //reached bottom (-5), go back up
+		if (moveCounter < -12) //reached bottom (-5), go back up
 		{
-			setPos(x, y-8);
-			y -= 8;
+			setPos(x, y-6);
+			y -= 6;
 			moveCounter++;
 			goingUp = true;
 		}
 		else //keep going down
 		{
-			setPos(x, y+8);
-			y += 8;
+			setPos(x, y+6);
+			y += 6;
 			moveCounter--;
 		}
 	}

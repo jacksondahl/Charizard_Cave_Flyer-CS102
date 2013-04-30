@@ -88,8 +88,8 @@ void GraphicWindow::moveBG()
 
 void GraphicWindow::flyUp()
 {
-	player->setPos(150,playerPos-5);
-	playerPos-=5;
+	player->setPos(150,playerPos-4);
+	playerPos-=4;
 }
 
 bool GraphicWindow::checkForSpikes()
@@ -101,13 +101,12 @@ bool GraphicWindow::checkForSpikes()
 	{
 		return true;
 	}
-	
 }
 
 void GraphicWindow::generateObject()
 {
 	int val = rand() %2000;
-	if (val == 0 && !fireHold) //fireball
+	if (val <= 3 && !fireHold) //fireball
 	{
 		//create fireball instance
 		Fireball* fire = new Fireball(fireballSprite,1000,200);
@@ -117,7 +116,7 @@ void GraphicWindow::generateObject()
 		gasHold = false;
 		gatrHold = false;
 	}
-	if (val > 0 && val <= 5 && !gatrHold)
+	if (val > 5 && val <= 10 && !gatrHold)
 	{
 		//creating Feraligatr instance
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
@@ -127,7 +126,7 @@ void GraphicWindow::generateObject()
 		gasHold = false;
 		gatrHold = true;
 	}
-	if (val > 5 && val <= 25 && !gasHold)
+	if (val > 10 && val <= 30 && !gasHold)
 	{
 		//creating Gastly instance
 		int yPos = rand() %280 + 30;
@@ -138,7 +137,7 @@ void GraphicWindow::generateObject()
 		fireHold = false;
 		gatrHold = false;
 	}
-	if (val > 25 && val <= 50)
+	if (val > 30 && val <= 40)
 	{
 		int yPos = rand() %280 + 30;
 		//creating wingull instance
@@ -170,8 +169,22 @@ bool GraphicWindow::checkForCollision()
 	for (int i=0; i<thingList.size(); i++)
 	{
 		Thing* t = thingList[i];
-		return player->collidesWithItem(t);
-		
+		if(player->collidesWithItem(t))
+		{
+			if (t->getType() == 1)
+			{
+				cout << "fireball" << endl;
+				
+				return false;
+				player->invincible = true;
+				delete thingList[i];
+				thingList.remove(thingList[i]);
+			}
+			else
+			{
+				return true;
+			}
+		}
 	}
 	return false;
 }

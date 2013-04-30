@@ -14,6 +14,7 @@ class Thing : public QGraphicsPixmapItem
 		//virtual void collidesWithItem() = 0;
 		int getX();
 		int getY();
+		virtual int getType() {return 0;}
 		
 	protected:
 		int x;
