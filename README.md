@@ -1,12 +1,12 @@
 # Game - Programming Assignments Private Repository
 ### Student Information
-  + Name: Tommy Trojan
-  + USC Email: ttrojan@usc.edu
-  + USC ID: 0123456789
+  + Name: Jackson Dahl
+  + USC Email: jacksocd@usc.edu
+  + USC ID: 3029883445
 
 ### Game Information
-  + Game Name: myAwsomeGame
-  + Game Description: One sentence game description
+  + Game Name: CharizardFlyer
+  + Game Description: Fly as charizard through a gave an avoid obstacles.
   + [Game Design Doc](GameDesignDoc.md)
 
 
@@ -14,12 +14,11 @@
 The grader should use the following procedure to compile and run the code:
 ```shell
 #Compile Instructions
-echo "Write command here"
+echo "qmake -project"
+echo "qmake"
+echo "make "
 #Doxygen Instructions
 echo "Write command here"
 #Command to run
-echo "Write command here"
+echo "./game_jacksocd"
 ```
-
-### Screenshots -- [Optional]
-You can either remove this section or add screenshots if you wish.
