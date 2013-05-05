@@ -137,7 +137,7 @@ void GraphicWindow::generateObject()
 		gatrHold = false;
 		wingHold = false;
 	}
-	if ((val > 5) && (val <= 10) && (!gatrHold))
+	if ((val > 1000) && (val <= 1005) && (!gatrHold))
 	{
 		//creating Feraligatr instance
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
@@ -147,7 +147,7 @@ void GraphicWindow::generateObject()
 		gatrHold = true;
 		wingHold = false;
 	}
-	if ((val > 15) && (val <= 25) && (!gasHold))
+	if ((val > 1500) && (val <= 1510) && (!gasHold))
 	{
 		//creating Gastly instance
 		int yPos = rand() %280 + 30;
@@ -158,7 +158,7 @@ void GraphicWindow::generateObject()
 		gatrHold = false;
 		wingHold = false;
 	}
-	if ((val > 30) && (val <= 35) && (!wingHold))
+	if ((val > 100) && (val <= 105) && (!wingHold))
 	{
 		int yPos = rand() %280 + 30;
 		//creating wingull instance
