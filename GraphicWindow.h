@@ -26,6 +26,8 @@ public:
     explicit GraphicWindow(MainWindow *parent);
     ~GraphicWindow();
    void moveBG();
+   void changeBGToSky();
+   void changeBGToRiver();
    void flyUp();
     int playerPos;
     Charizard* player; //player
@@ -38,6 +40,7 @@ public:
 	//prevent duplicate objects from being created randomly, except for wingull which is most common enemy
 	bool gasHold;
 	bool gatrHold;
+	bool wingHold;
 	bool fireHold; //used to not generate new fireball object if player is already invincible
     
 private:

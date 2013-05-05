@@ -18,8 +18,8 @@ Wingull::~Wingull()
 //move function
 void Wingull::move()
 {
-	setPos(x-3,y);
-	x -= 3;
+	setPos(x-4,y);
+	x -= 4;
 	if (firstMove)
 	{
 		int val = rand() %2;

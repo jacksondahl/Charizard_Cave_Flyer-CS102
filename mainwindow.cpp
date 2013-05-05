@@ -105,6 +105,14 @@ void MainWindow::loop()
 		game->flyUp();
 	}
 	
+	if(game->checkForSpikes() || game->checkForCollision())
+	{
+		death();
+		return;
+	}
+	
+	
+	
 	game->generateObject();
 	game->objectMovement();
 	
@@ -112,39 +120,22 @@ void MainWindow::loop()
 	QString score_ = QString::number(score);
 	outputLabel->setText("Player: "+userName_+"\n Score:"+score_+"\n Press shift to fly, P to pause and Q to quit.");
 	
-	if(game->checkForSpikes() || game->checkForCollision())
-	{
-		death();
-	}
-	
 	//speed up
-	if (score == 250)
-	{
-		timer->setInterval(950/24);
-	}
-	
-	if (score == 500)
-	{
-		timer->setInterval(900/24);
-	}
 	
 	if (score == 750)
 	{
-		timer->setInterval(850/24);
-	}
-	
-	if (score == 1000)
-	{
-		timer->setInterval(750/24);
+		game->changeBGToRiver(); //level 2
+		timer->setInterval(900/24);
 	}
 	
 	if (score == 1500)
 	{
-		timer->setInterval(650/24);
+		game->changeBGToSky(); //level 3
+		timer->setInterval(600/24);
 	}
 	if (score == 2000)
 	{
-		timer->setInterval(500/24);
+		timer->setInterval(550/24);
 	}
 	if (score == 3000)
 	{

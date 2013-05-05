@@ -53,10 +53,13 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	bool gasHold = false;
 	bool gatrHold = false;
 	bool fireHold = false;
+	bool wingHold = false;
 	
+	/*
 	Fireball* fire = new Fireball(fireballSprite,1000,200);
 	scene->addItem(fire);
 	thingList.push_back(fire);
+	*/
 
 	this->setFixedSize(1044,420);
 	topLX = 0;
@@ -89,6 +92,20 @@ void GraphicWindow::moveBG()
 	}
 }
 
+void GraphicWindow::changeBGToSky()
+{
+	//changing bg to sky
+	bg->setPixmap(QPixmap(QString("skyBackground.png")));
+	bg2->setPixmap(QPixmap(QString("skyBackground.png")));
+}
+
+void GraphicWindow::changeBGToRiver()
+{
+	//Changing bg to river
+	bg->setPixmap(QPixmap(QString("riverBackground.png")));
+	bg2->setPixmap(QPixmap(QString("riverBackground.png")));
+}
+
 void GraphicWindow::flyUp()
 {
 	player->setPos(150,playerPos-4);
@@ -109,7 +126,7 @@ bool GraphicWindow::checkForSpikes()
 void GraphicWindow::generateObject()
 {
 	int val = rand() %2000;
-	if (val <= 5 && !fireHold) //fireball
+	if (val <= 2 && !fireHold) //fireball
 	{
 		//create fireball instance
 		Fireball* fire = new Fireball(fireballSprite,1000,200);
@@ -118,6 +135,7 @@ void GraphicWindow::generateObject()
 		fireHold = true;
 		gasHold = false;
 		gatrHold = false;
+		wingHold = false;
 	}
 	if (val > 5 && val <= 10 && !gatrHold)
 	{
@@ -127,8 +145,9 @@ void GraphicWindow::generateObject()
 		thingList.push_back(gatr);
 		gasHold = false;
 		gatrHold = true;
+		wingHold = false;
 	}
-	if (val > 10 && val <= 30 && !gasHold)
+	if (val > 15 && val <= 25 && !gasHold)
 	{
 		//creating Gastly instance
 		int yPos = rand() %280 + 30;
@@ -137,8 +156,9 @@ void GraphicWindow::generateObject()
 		thingList.push_back(gas);
 		gasHold = true;
 		gatrHold = false;
+		wingHold = false;
 	}
-	if (val > 30 && val <= 40)
+	if (val > 30 && val <= 34 && !wingHold)
 	{
 		int yPos = rand() %280 + 30;
 		//creating wingull instance
@@ -147,6 +167,7 @@ void GraphicWindow::generateObject()
 		thingList.push_back(wing);
 		gasHold = false;
 		gatrHold = false;
+		wingHold = true;
 	}
 }
 
@@ -174,7 +195,6 @@ bool GraphicWindow::checkForCollision()
 			
 			if (t->getType() == 1)
 			{
-				cout << "hit" << endl;
 				player->invincible = true;
 				delete thingList[i];
 				thingList.remove(thingList[i]);
@@ -183,7 +203,6 @@ bool GraphicWindow::checkForCollision()
 			
 			else
 			{
-			cout << "hit" << endl;
 				return true;
 			}
 		}

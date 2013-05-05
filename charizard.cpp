@@ -23,10 +23,9 @@ void Charizard::move()
 
 bool Charizard::collidesWithItem(Thing* t)
 {
-	QRectF playerRect(x,y,80,60);
-	//const QRectF playerRect = boundingRect();
-	QRectF thingRect (t->boundingRect());
-	thingRect.moveTo(t->getX(),t->getY());
+	QRectF playerRect(x+5,y+5,75,55);
+	QRectF thingRect (t->getX(),t->getY(),t->getWidth(),t->getHeight());
+	//cthingRect.setRect();
 	if ((playerRect.intersects(thingRect)))
 	{	
 		return true;
