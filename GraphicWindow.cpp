@@ -126,7 +126,7 @@ bool GraphicWindow::checkForSpikes()
 void GraphicWindow::generateObject()
 {
 	int val = rand() %2000;
-	if (val <= 2 && !fireHold) //fireball
+	if ((val <= 2) && (!fireHold)) //fireball
 	{
 		//create fireball instance
 		Fireball* fire = new Fireball(fireballSprite,1000,200);
@@ -137,7 +137,7 @@ void GraphicWindow::generateObject()
 		gatrHold = false;
 		wingHold = false;
 	}
-	if (val > 5 && val <= 10 && !gatrHold)
+	if ((val > 5) && (val <= 10) && (!gatrHold))
 	{
 		//creating Feraligatr instance
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
@@ -147,7 +147,7 @@ void GraphicWindow::generateObject()
 		gatrHold = true;
 		wingHold = false;
 	}
-	if (val > 15 && val <= 25 && !gasHold)
+	if ((val > 15) && (val <= 25) && (!gasHold))
 	{
 		//creating Gastly instance
 		int yPos = rand() %280 + 30;
@@ -158,7 +158,7 @@ void GraphicWindow::generateObject()
 		gatrHold = false;
 		wingHold = false;
 	}
-	if (val > 30 && val <= 34 && !wingHold)
+	if ((val > 30) && (val <= 35) && (!wingHold))
 	{
 		int yPos = rand() %280 + 30;
 		//creating wingull instance
