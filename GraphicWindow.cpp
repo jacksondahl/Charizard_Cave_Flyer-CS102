@@ -55,16 +55,16 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	bool fireHold = false;
 	bool wingHold = false;
 	
-	/*
-	Fireball* fire = new Fireball(fireballSprite,1000,200);
-	scene->addItem(fire);
-	thingList.push_back(fire);
-	*/
-
 	this->setFixedSize(1044,420);
 	topLX = 0;
 	setScene(scene);
 	
+	
+	//fireballtest instance
+	Fireball* fire = new Fireball(fireballSprite,1000,150);
+	scene->addItem(fire);
+	fireList.push_back(fire);
+	//fireball test instance
 	
 	//player->invincible = true; - only if you get fireball
 	
@@ -129,9 +129,9 @@ void GraphicWindow::generateObject()
 	if ((val <= 2) && (!fireHold)) //fireball
 	{
 		//create fireball instance
-		Fireball* fire = new Fireball(fireballSprite,1000,200);
+		Fireball* fire = new Fireball(fireballSprite,1000,150);
 		scene->addItem(fire);
-		thingList.push_back(fire);
+		fireList.push_back(fire);
 		fireHold = true;
 		gasHold = false;
 		gatrHold = false;
@@ -183,6 +183,19 @@ void GraphicWindow::objectMovement()
 			thingList.remove(thingList[i]);
 		}
 	}
+	
+	
+	//making fireballs move
+	for (int k = 0; k<fireList.size(); k++)
+	{
+		//fireList[k]->move();
+		moveAway(fireList[k]);
+		if (fireList[k]->getX() == -1)
+		{
+			delete fireList[k];
+			fireList.remove(fireList[k]);
+		}
+	}
 }
 
 bool GraphicWindow::checkForCollision()
@@ -192,22 +205,41 @@ bool GraphicWindow::checkForCollision()
 		Thing* t = thingList[i];
 		if(player->collidesWithItem(t))
 		{
-			
-			if (t->getType() == 1)
-			{
-				cout << "invincibility" << endl;
-				player->invincible = true;
-				delete thingList[i];
-				cout << "test" << endl;
-				return false;
-			}
-			
-			else
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 	return false;
+}
+
+bool GraphicWindow::checkForFire()
+{
+	for (int i=0; i<fireList.size(); i++)
+	{
+		Thing* f = fireList[i];
+		if (player->collidesWithItem(f))
+		{
+			cout << "invincibility" << endl;
+			player->invincible = true;
+			delete fireList[i];
+			return true; //hit fireball
+		}
+	}
+	return false; //no fireball hit
+}
+
+void GraphicWindow::moveAway(Thing* t)
+{
+	t->setPos(t->getX()-10,t->getY());
+	t->changeX(-10);
+	if (playerPos < t->getY()) //if player is above fireball, move fireball down
+	{	
+		t->setPos(t->getX(),t->getY()-1);
+		t->changeY(1);
+	}
+	else if (playerPos > t->getY()) //if player is below fireball, move fireball up
+	{
+		t->setPos(t->getX(),t->getY()+1);
+		t->changeY(-1);
+	}
 }
 
