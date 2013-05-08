@@ -34,6 +34,7 @@ public:
     bool checkForSpikes();
     void objectMovement(); //moves objects and checks for collisions
 	bool checkForCollision();
+	bool checkForFire();
 	void generateObject();
 	
 	//bools used in generation of ojbects (hold an object from being generated again until a different object has been generated
@@ -50,8 +51,10 @@ private:
     QGraphicsPixmapItem* bg2; //second instance of background used for scrolling
     int *numArr;
     int topLX;
-    MyList<Thing*> thingList;
+    MyList<Thing*> thingList; //list to store enemies
+    MyList<Thing*> fireList; //list to store fireballs
     MainWindow* m;
+    void moveAway(Thing* t); //moves object away from Player - used for fireballs
     
     //sprites
     QPixmap* playerSprite; //charizard player image

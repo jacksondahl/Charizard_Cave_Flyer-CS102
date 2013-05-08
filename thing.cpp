@@ -19,3 +19,14 @@ int Thing::getY()
 {
 	return y;
 }
+
+void Thing::changeX(int xVal)
+{
+	x += xVal;
+
+}
+
+void Thing::changeY(int yVal)
+{
+	y += yVal;
+}

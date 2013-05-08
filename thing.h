@@ -14,6 +14,8 @@ class Thing : public QGraphicsPixmapItem
 		//virtual void collidesWithItem() = 0;
 		int getX();
 		int getY();
+		void changeX(int xVal);
+		void changeY(int yVal);
 		virtual int getType() {return 0;}
 		bool isFireball;
 		int getHeight() {return pixMap->height();}

@@ -83,11 +83,11 @@ void MainWindow::keyPause()
 
 void MainWindow::loop()
 {
+	//game->checkForFire();
 	if (game->player->invincible)
 	{
 		QString score_ = QString::number(score);
 		outputLabel->setText("Player: "+userName_+"\n Score:"+score_+"\n Press shift to fly, P to pause and Q to quit.\n Currently invincible");
-		
 		invincibilityCounter++;
 		if (invincibilityCounter == 200)
 		{
@@ -109,10 +109,10 @@ void MainWindow::loop()
 	
 	if(game->checkForSpikes() || game->checkForCollision())
 	{
+		cout << "AAA" << endl;
 		death();
 		return;
 	}
-	
 	
 	
 	game->generateObject();
@@ -147,6 +147,7 @@ void MainWindow::loop()
 	{
 		timer->setInterval(250/24);
 	}
+	
 	
 }
 
