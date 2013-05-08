@@ -4,6 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include "thing.h"
+#include <iostream>
+
+using namespace std;
 
 class Feraligatr : public Thing
 {
@@ -14,6 +17,7 @@ class Feraligatr : public Thing
 		bool isJumping;
 		int jumpUpCounter;
 		int jumpDownCounter;
+		void printType() {cout << "Killed by Feraligatr" << endl;}
 };
 
 #endif
