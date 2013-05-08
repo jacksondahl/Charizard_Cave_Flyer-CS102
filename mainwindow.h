@@ -74,6 +74,7 @@ private:
     
     //QLabel
     QLabel *outputLabel;
+    //QLabel *allScores;
     
     void keyPause();
     

@@ -137,7 +137,7 @@ void GraphicWindow::generateObject()
 		gatrHold = false;
 		wingHold = false;
 	}
-	if ((val > 1000) && (val <= 1005) && (!gatrHold))
+	if ((val > 1000) && (val <= 1008) && (!gatrHold))
 	{
 		//creating Feraligatr instance
 		Feraligatr* gatr = new Feraligatr(feraligatrSprite,1000,310);
@@ -195,9 +195,10 @@ bool GraphicWindow::checkForCollision()
 			
 			if (t->getType() == 1)
 			{
+				cout << "invincibility" << endl;
 				player->invincible = true;
 				delete thingList[i];
-				thingList.remove(thingList[i]);
+				cout << "test" << endl;
 				return false;
 			}
 			

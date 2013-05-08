@@ -4,6 +4,10 @@
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include "thing.h"
+#include <iostream>
+
+using namespace std;
+
 
 class Wingull : public Thing
 {
@@ -14,6 +18,7 @@ class Wingull : public Thing
 		//int moveCounter;
 		bool firstMove;
 		bool up;
+		void printType() {cout << "Killed by Wingull" << endl;}
 };
 
 #endif

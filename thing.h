@@ -18,6 +18,7 @@ class Thing : public QGraphicsPixmapItem
 		bool isFireball;
 		int getHeight() {return pixMap->height();}
 		int getWidth() {return pixMap->width();}
+		virtual void printType() {};
 		
 	protected:
 		int x;

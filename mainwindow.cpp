@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
+#include <QTextEdit>
 
 using namespace std;
 
@@ -153,7 +155,6 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 		if (e->key() == Qt::Key_Shift)
 		{
 			spacePressed = true;
-			//game->flyUp();
 		}
 		if (e->key() == Qt::Key_P)
 		{
@@ -186,6 +187,49 @@ void MainWindow::death()
 	startButton->show();
 	bottomPanel->show();
 	pauseButton->hide();
+	
+	
+	
+	//dealing without outputting scores
+	ifstream in("highScores.txt");
+	if (in.fail())
+	{
+		//creating file and writing to scores
+		ofstream os("highScores.txt");
+		os << "Player: ";
+		os << userName_.toStdString();
+		os << " - Score: ";
+		os << score;
+		os << endl; 
+	}
+	else //file already exists, add score
+	{
+		string scoreList;
+		ofstream os;
+		os.open("highScores.txt",ios::out | ios::app);
+		os << "Player: ";
+		os << userName_.toStdString();
+		os << " - Score: ";
+		os << score;
+		os << "\n";
+		
+		//displaying all scores
+		int c;
+		while((c = in.get()) != EOF)
+		{
+  		scoreList += char(c);
+		
+		}
+		QString qstr = QString::fromStdString(scoreList);
+		QLabel *allScores = new QLabel(qstr,this);
+		allScores->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+		allScores->setAlignment(Qt::AlignCenter);
+		outputLayout->addWidget(allScores);
+		
+		
+	}
+	
+	return;
 }
 
 
@@ -247,15 +291,15 @@ MainWindow::MainWindow()
 	outputLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	outputLabel->setText("Enter your name and press enter or click start to begin the game.");
 	outputLayout->addWidget(outputLabel);
-	
+
 	input->setLayout(inputLayout);
 	output->setLayout(outputLayout);
 	bottomPanel->setWidget(input);
 	topPanel->setWidget(output);
-    
+
 	this->addDockWidget(Qt::BottomDockWidgetArea,bottomPanel);
 	this->addDockWidget(Qt::TopDockWidgetArea,topPanel);
-
+	
 	
     
 }

@@ -4,6 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include "thing.h"
+#include <iostream>
+
+using namespace std;
 
 class Gastly : public Thing
 {
@@ -13,6 +16,7 @@ class Gastly : public Thing
 		void move();
 		//int moveCounter;
 		//bool goingUp;
+		void printType() {cout << "Killed by Gastly" << endl;}
 };
 
 #endif

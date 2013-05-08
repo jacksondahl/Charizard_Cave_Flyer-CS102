@@ -4,6 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
 #include "thing.h"
+#include <iostream>
+
+using namespace std;
 
 class Spikes : public Thing
 {
@@ -11,6 +14,7 @@ class Spikes : public Thing
 		Spikes(QPixmap *pm, int nx, int ny);
 		~Spikes();
 		void move();
+		void printType() {cout << "Killed by Spikes" << endl;}
 };
 
 #endif
