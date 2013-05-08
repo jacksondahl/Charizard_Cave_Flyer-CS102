@@ -29,6 +29,7 @@ public:
     bool gameStarted;
     bool spacePressed;
     bool isPaused;
+    bool restarted;
     
     //timer
 	QTimer* timer;
@@ -74,7 +75,7 @@ private:
     
     //QLabel
     QLabel *outputLabel;
-    //QLabel *allScores;
+    QLabel *allScores;
     
     void keyPause();
     

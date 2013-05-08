@@ -35,6 +35,7 @@ void MainWindow::startGame()
 	connect(timer, SIGNAL(timeout()), this, SLOT(loop()));
 	timer->start();
 	bottomPanel->hide();
+	//allScores->hide();
 } 
 
 void MainWindow::pauseGame()
@@ -109,7 +110,6 @@ void MainWindow::loop()
 	
 	if(game->checkForSpikes() || game->checkForCollision())
 	{
-		cout << "AAA" << endl;
 		death();
 		return;
 	}
@@ -226,9 +226,10 @@ void MainWindow::death()
 		allScores->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 		allScores->setAlignment(Qt::AlignCenter);
 		outputLayout->addWidget(allScores);
-		
-		
 	}
+	
+	restarted = true;
+	//allScores->show();
 	
 	return;
 }
@@ -239,6 +240,7 @@ MainWindow::MainWindow()
 	gameStarted = false;
 	spacePressed = false;
 	isPaused = false;
+	restarted = false;
 	
 	score = 0;
 	
@@ -260,7 +262,7 @@ MainWindow::MainWindow()
    
     
     inputLayout = new QVBoxLayout;
-    outputLayout = new QVBoxLayout;
+    outputLayout = new QVBoxLayout; 
     
 	//Board Size input box
     userName = new QLineEdit;
@@ -292,6 +294,7 @@ MainWindow::MainWindow()
 	outputLabel->setFrameStyle(QFrame::Panel | QFrame::Sunken);
 	outputLabel->setText("Enter your name and press enter or click start to begin the game.");
 	outputLayout->addWidget(outputLabel);
+	
 
 	input->setLayout(inputLayout);
 	output->setLayout(outputLayout);

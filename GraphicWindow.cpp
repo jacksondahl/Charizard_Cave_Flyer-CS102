@@ -61,7 +61,7 @@ GraphicWindow::GraphicWindow(MainWindow *parent)
 	
 	
 	//fireballtest instance
-	Fireball* fire = new Fireball(fireballSprite,1000,150);
+	Fireball* fire = new Fireball(fireballSprite,1000,175);
 	scene->addItem(fire);
 	fireList.push_back(fire);
 	//fireball test instance
@@ -129,7 +129,7 @@ void GraphicWindow::generateObject()
 	if ((val <= 2) && (!fireHold)) //fireball
 	{
 		//create fireball instance
-		Fireball* fire = new Fireball(fireballSprite,1000,150);
+		Fireball* fire = new Fireball(fireballSprite,1000,175);
 		scene->addItem(fire);
 		fireList.push_back(fire);
 		fireHold = true;
@@ -229,8 +229,8 @@ bool GraphicWindow::checkForFire()
 
 void GraphicWindow::moveAway(Thing* t)
 {
-	t->setPos(t->getX()-10,t->getY());
-	t->changeX(-10);
+	t->setPos(t->getX()-8,t->getY());
+	t->changeX(-8);
 	if (playerPos < t->getY()) //if player is above fireball, move fireball down
 	{	
 		t->setPos(t->getX(),t->getY()-1);
