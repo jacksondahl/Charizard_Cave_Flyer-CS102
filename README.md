@@ -23,6 +23,7 @@ n/a
 
 ###Command to run
 - "./directory_name"
+```
 
 ##Screenshots
 ###Start Screen
