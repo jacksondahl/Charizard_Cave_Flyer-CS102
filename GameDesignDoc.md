@@ -1,12 +1,12 @@
-#Jackson Dahl PA5
-##Charizard Cave Game
-###Player
-
-
-The player will control flying [Charizard] (https://www.dropbox.com/s/8l5fw28fo4avdrl/Screen%20Shot%202013-04-21%20at%2010.20.16%20PM.png) that can move up or down to avoid obstacles.
-
+#Jackson Dahl
+##Charizard Flyer Game
 ###Objective
 The objective of the game is to fly for as long as possible without hitting an enemy or the top or bottom of the cave. Charizard will eventually fly faster and faster, making things more difficult.
+
+###The Player
+![Charizard](charizardSprite.png "Charizard Sprite")
+
+The player controls Charizard, who flies through the cave and can move up or down to avoid obstacles.
 
 ###Controls
 The player plays the game by pressing and holding the shift key and letting it go (to have charizard go down and up) and by using the mouse to click buttons to start/pause/quit the game.
@@ -21,23 +21,45 @@ The score increases the longer the player stays alive without dying.
 The player has one life. The player dies when Charizard hits any kind of enemy or the top or bottom of the gave. 
 
 ###Immunity
-One of the 5 objects are fireballs [Click to view] (http://mmii.info/icons/Koole321/pokemon_fireType.gif) - small flame balls that move in a wave motion across the scrren and are rare). If Charizard hits (eats) one of these, he will be invincible for 10 seconds (meaning he can hit any object or the top or bottom without dying).
+![Fireball](fireballSprite.png "Fireball Sprite")
 
-###Cave Walls
-The cave walls, the one nonmoving object drawn in the layout below, will be spikey on the top and bottom. If Charizard hits these walls by either sinking too far or flying too high, he will die.
+Fireballs move in a wave motion across the screen, away from charizard, and are very rare). If Charizard hits (eats) one of these, he will be invincible for 200 score points seconds (meaning he can hit any object or the top or bottom without dying).
+*Note: In this iteration of the game, fireballs malfunction and do not give Charizard immunity. He will merely pass through them without anything happening.
 
 ###Enemies
 There are three types of enemies:
+
 ####Feraligatr
-[Click to view] (http://spriters-resource.com/ds/pokemonrangertol/sheet/29933) (he is the big blue dinosaur). Feraligatr sits on the bottom of the cave and will jump up at various times, while sometimes staying on the bottom of the cave.
+![Feraligatr](feraligatrSprite.png "Feraligatr Sprite")
+
+Feraligatr sits on the bottom of the cave and will jump up at various times, while sometimes staying on the bottom of the cave.
 
 ####Wingull
-[Click to view] (http://spriters-resource.com/ds/pokemonrangertol/wingull.png) (he is the smaller white bird). Wingull moves in a vertical line up and down the screen, from the top of the cave to the bottom, repeatedly.
+![Wingull](wingullSprite.png "Wingull Sprite")
+
+Wingull moves in a vertical line up and down the screen, from the top of the cave to the bottom, repeatedly.
 
 ####Gastly
-[Click to view] (http://spriters-resource.com/ds/pokemonrangertol/gastlyhaunterngengar.png) (Gastly is the top purple ball of gas). Gastly moves around in the air of the cave in a completely random pattern, flying around to try and get charizard.
+![Gastly](gastlySprite.png "Gastly Sprite")
+
+Gastly moves around in the air of the cave in a completely random pattern, flying around to try and get charizard.
+
+###Cave Walls
+![UpperSpikes](upperSpikesSprite.png "Upper Spikes Sprite")
+![LowerSpikes](lowerSpikesSprite.png "Lower Spikes Sprite")
+The cave walls, the one nonmoving object drawn in the layout below, will be spikey on the top and bottom. If Charizard hits these walls by either sinking too far or flying too high, he will die.
 
 
+###Levels
+##There are three levels:
+1. The Cave
+![Cave Background](caveBackground.png "Cave Background Image")
+
+2. The River
+![River Background](riverBackground.png "River Background Image")
+
+3. The Sky
+![Sky Background](skyBackground.png "Sky Background Image")
 
 ###Layout
 The game's interface is drawn below. It is very straightforward.
