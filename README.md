@@ -13,13 +13,23 @@
 ### Compile & Run Instructions
 The grader should use the following procedure to compile and run the code:
 ```shell
-#Compile Instructions
+###Compile Instructions
 - "qmake -project"
 - "qmake"
 - "make"
 
-#Doxygen Instructions
+###Doxygen Instructions
 n/a
 
-#Command to run
+###Command to run
 - "./directory_name"
+
+##Screenshots
+###Start Screen
+![](screenshots/startScreen.png "Start Screen")
+###Game Screen
+![](screenshots/gameScreen.png "Game Screen")
+###Game Over and Score Screen
+![](screenshots/gameOver.png "Game Over and Score Screen")
+
+
