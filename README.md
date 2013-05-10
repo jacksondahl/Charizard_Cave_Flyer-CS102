@@ -5,8 +5,8 @@
   + USC ID: 3029883445
 
 ### Game Information
-  + Game Name: CharizardFlyer
-  + Game Description: Fly as charizard through a gave an avoid obstacles.
+  + Game Name: Charizard Cave Flyer
+  + Game Description: Fly as Charizard through a cave and avoid obstacles.
   + [Game Design Doc](GameDesignDoc.md)
 
 
