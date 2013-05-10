@@ -14,11 +14,12 @@
 The grader should use the following procedure to compile and run the code:
 ```shell
 #Compile Instructions
-echo "qmake -project"
-echo "qmake"
-echo "make "
+- "qmake -project"
+- "qmake"
+- "make"
+
 #Doxygen Instructions
-echo "Write command here"
+n/a
+
 #Command to run
-echo "./game_jacksocd"
-```
+- "./directory_name"
